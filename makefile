@@ -12,9 +12,9 @@ poly: main.o common.o cal.o
 common.o: common.c common.h
 	$(CC) -c common.c -o common.o
 
-cal.o: sort.c sort.h
-	$(CC) -c sort.c -o sort.o
+cal.o: cal.c cal.h
+	$(CC) -c cal.c -o cal.o
 
 clean:
-	rm -f sort.exe
+	rm -f poly.exe
 	rm -f *.o
