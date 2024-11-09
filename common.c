@@ -1,6 +1,6 @@
 #include "common.h"
 
-// 새로운 노드 생성 함수
+// create new node
 Node* createNode(int coeff, int exp) {
     Node* newNode = (Node*)malloc(sizeof(Node));
     newNode->coefficient = coeff;
@@ -9,13 +9,13 @@ Node* createNode(int coeff, int exp) {
     return newNode;
 }
 
-// 다항식 입력 함수
+// input linkedlist-version polynomial
 Node* inputLinkedPolynomial() {
     Node* head = NULL;
     Node* tail = NULL;
     int coeff, exp;
 
-    printf("다항식을 입력하세요 (계수와 차수를 입력, -1 -1로 종료):\n");
+    printf("Enter polynomial terms (input coefficient and exponent, end with -1 -1):\n");
     while (1) {
         scanf("%d %d", &coeff, &exp);
         if (coeff == -1 && exp == -1) break;
@@ -33,13 +33,13 @@ Node* inputLinkedPolynomial() {
     return head;
 }
 
-// 다항식 입력 함수
+// input array-version polynomial
 int* inputArrayPolynomial() {
     int* arrayPol=NULL;
     int cnt = 0;
     int coeff, exp;
 
-    printf("다항식을 입력하세요 (계수와 차수를 입력, -1 -1로 종료):\n");
+    printf("Enter polynomial terms (input coefficient and exponent, end with -1 -1):\n");
     while (1) {
         scanf("%d %d", &coeff, &exp);
         if (coeff == -1 && exp == -1) break;
@@ -51,7 +51,7 @@ int* inputArrayPolynomial() {
     return arrayPol;
 }
 
-// 다항식 출력 함수
+// print linkedlist-version polynomial
 void printLinkedPolynomial(Node* poly) {
     Node* current = poly;
     while (current) {
@@ -64,12 +64,14 @@ void printLinkedPolynomial(Node* poly) {
     printf("\n");
 }
 
+// oprint array-version polynomial
 void printArrayPolynomial(int* a, int n) {
     for (int i = 0; i < n; i++)
         printf("%d ", a[i]);
     printf("\n");
 }
 
+// 
 void freeArray(int* arr) {
     free(arr);
 }
