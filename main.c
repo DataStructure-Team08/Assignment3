@@ -4,19 +4,19 @@
 #include "cal.h"
 
 int main() {
-    printf("Ã¹ ¹øÂ° ´ÙÇ×½Ä:\n");
+    printf("First polynomial:\n");
     Node* poly1 = inputLinkedPolynomial();
 
-    printf("µÎ ¹øÂ° ´ÙÇ×½Ä:\n");
+    printf("Second polynomial:\n");
     Node* poly2 = inputLinkedPolynomial();
 
     Node* result = addLinkedPolynomials(poly1, poly2);
 
-    printf("°á°ú ´ÙÇ×½Ä:\n");
+    printf("Result polynomial:\n");
     printLinkedPolynomial(result);
 
-    // ¸Ş¸ğ¸® ÇØÁ¦
-    // TODO: °¢ ¸µÅ©µå ¸®½ºÆ®ÀÇ ³ëµå¸¦ ÇØÁ¦ÇÏ´Â ÄÚµå¸¦ Ãß°¡ÇÏ¼¼¿ä.
+    // ë©”ëª¨ë¦¬ í•´ì œ
+    // TODO: ê° ë§í¬ë“œ ë¦¬ìŠ¤íŠ¸ì˜ ë…¸ë“œë¥¼ í•´ì œí•˜ëŠ” ì½”ë“œë¥¼ ì¶”ê°€í•˜ì„¸ìš”.
 
     return 0;
 }
