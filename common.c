@@ -80,8 +80,3 @@ void printArrayPolynomial(int* a, int n) {
         printf("%d ", a[i]);
     printf("\n");
 }
-
-// 
-void freeArray(int* arr) {
-    free(arr);
-}
