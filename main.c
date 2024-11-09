@@ -44,8 +44,8 @@ int main()
     // delete polynomials
     free(arr1);
     free(arr2);
-    free(link_add);
-    free(link_sub);
+    freeNode(link_add);
+    freeNode(link_sub);
 
     return 0;
 }
