@@ -60,7 +60,7 @@ Node *addLinkedPolynomials(Node *poly1, Node *poly2)
     return result;
 }
 
-// ´ÙÇ×½Ä °¡°¨ ¿¬»ê ÇÔ¼ö
+// ë‹¤í•­ì‹ ê°€ê° ì—°ì‚° í•¨ìˆ˜
 Node *subLinkedPolynomials(Node *poly1, Node *poly2)
 {
     Node *result = NULL;
@@ -121,16 +121,16 @@ Node *subLinkedPolynomials(Node *poly1, Node *poly2)
     return result;
 }
 
-// µÎ ´ÙÇ×½ÄÀÇ µ¡¼À ÇÔ¼ö
+// Add two polynomials in array form
 Pol *addArrayPolynomials(Pol *poly1, Pol *poly2)
 {
-    // °á°ú ¹è¿­ÀÇ Å©±â´Â µÎ ´ÙÇ×½ÄÀÇ ÃÖ´ë Áö¼ö Áß ´õ Å« °ª
+    // Determine the size of the result array as the maximum exponent from both polynomials
     Pol *result = (Pol *)malloc(sizeof(Pol));
     int resultSize = (poly1->size > poly2->size) ? poly1->size : poly2->size;
     result->size = resultSize;
     result->a = (int *)calloc(resultSize, sizeof(int));
 
-    // °¢ ´ÙÇ×½ÄÀÇ °è¼ö¸¦ °á°ú ¹è¿­¿¡ ´õÇÔ
+    // Add coefficients of each polynomial to the result array
     for (int i = 0; i < poly1->size; i++)
     {
         if (poly1->a[i] != 0)
@@ -144,16 +144,17 @@ Pol *addArrayPolynomials(Pol *poly1, Pol *poly2)
 
     return result;
 }
-// µÎ ´ÙÇ×½ÄÀÇ µ¡¼À ÇÔ¼ö
+
+// Subtract two polynomials in array form
 Pol *subArrayPolynomials(Pol *poly1, Pol *poly2)
 {
-    // °á°ú ¹è¿­ÀÇ Å©±â´Â µÎ ´ÙÇ×½ÄÀÇ ÃÖ´ë Áö¼ö Áß ´õ Å« °ª
+    // Determine the size of the result array as the maximum exponent from both polynomials
     Pol *result = (Pol *)malloc(sizeof(Pol));
     int resultSize = (poly1->size > poly2->size) ? poly1->size : poly2->size;
     result->size = resultSize;
     result->a = (int *)calloc(resultSize, sizeof(int));
 
-    // °¢ ´ÙÇ×½ÄÀÇ °è¼ö¸¦ °á°ú ¹è¿­¿¡ ´õÇÔ
+    // Subtract coefficients of each polynomial from the result array
     for (int i = 0; i < poly1->size; i++)
     {
         if (poly1->a[i] != 0)
