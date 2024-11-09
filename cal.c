@@ -60,7 +60,7 @@ Node *addLinkedPolynomials(Node *poly1, Node *poly2)
     return result;
 }
 
-// 다항식 가감 연산 함수
+// Subtract polynomials in linked list form
 Node *subLinkedPolynomials(Node *poly1, Node *poly2)
 {
     Node *result = NULL;
