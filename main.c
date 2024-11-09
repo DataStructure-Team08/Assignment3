@@ -12,8 +12,8 @@ int main()
     printf("Second array-version polynomial: \n");
     Pol *arr2 = inputArrayPolynomial();
 
-    int *arr_add = addArrayPolynomials(arr1, arr2);
-    int *arr_sub = subArrayPolynomials(arr1, arr2);
+    Pol *arr_add = addArrayPolynomials(arr1, arr2);
+    Pol *arr_sub = subArrayPolynomials(arr1, arr2);
 
     printf("Add Result: ");
     printArrayPolynomial(arr_add);
@@ -32,10 +32,10 @@ int main()
     Node *link_sub = subLinkedPolynomials(link1, link2);
 
     printf("Add Result: ");
-    printArrayPolynomial(link_add);
+    printLinkedPolynomial(link_add);
     printf("\n");
     printf("Sub Result: ");
-    printArrayPolynomial(link_sub);
+    printLinkedPolynomial(link_sub);
     printf("\n");
 
     // delete polynomials

@@ -23,8 +23,8 @@ typedef struct Pol
 Node *createNode(int coeff, int exp);
 Node *inputLinkedPolynomial();
 Pol *inputArrayPolynomial();
-void printPolynomial(Node *poly);
-void print_array(int *a, int n);
+void printLinkedPolynomial(Node *poly);
+void printArrayPolynomial(Pol *p);
 Node *freeNode(Node *head);
 void freeArray(int *arr);
 

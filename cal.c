@@ -1,6 +1,5 @@
 #include "cal.h"
 
-// 다항식 가감 연산 함수
 Node *addLinkedPolynomials(Node *poly1, Node *poly2)
 {
     Node *result = NULL;
@@ -123,45 +122,47 @@ Node *subLinkedPolynomials(Node *poly1, Node *poly2)
 }
 
 // 두 다항식의 덧셈 함수
-int *addArrayPolynomials(int *poly1, int *poly2)
+Pol *addArrayPolynomials(Pol *poly1, Pol *poly2)
 {
-    int maxExp1 = sizeof(poly1) / sizeof(poly1[0]);
-    int maxExp2 = sizeof(poly2) / sizeof(poly2[0]);
-
     // 결과 배열의 크기는 두 다항식의 최대 지수 중 더 큰 값
-    int resultSize = (maxExp1 > maxExp2) ? maxExp1 : maxExp2;
-    int *result = (int *)calloc(resultSize, sizeof(int)); // 0으로 초기화된 배열
+    Pol *result = (Pol *)malloc(sizeof(Pol));
+    int resultSize = (poly1->size > poly2->size) ? poly1->size : poly2->size;
+    result->size = resultSize;
+    result->a = (int *)calloc(resultSize, sizeof(int));
 
     // 각 다항식의 계수를 결과 배열에 더함
-    for (int i = 0; i < maxExp1; i++)
+    for (int i = 0; i < poly1->size; i++)
     {
-        result[i] += poly1[i];
+        if (poly1->a[i] != 0)
+            result->a[i] += poly1->a[i];
     }
-    for (int i = 0; i < maxExp2; i++)
+    for (int i = 0; i < poly2->size; i++)
     {
-        result[i] += poly2[i];
+        if (poly2->a[i] != 0)
+            result->a[i] += poly2->a[i];
     }
 
     return result;
 }
 // 두 다항식의 덧셈 함수
-int *subArrayPolynomials(int *poly1, int *poly2)
+Pol *subArrayPolynomials(Pol *poly1, Pol *poly2)
 {
-    int maxExp1 = sizeof(poly1) / sizeof(poly1[0]);
-    int maxExp2 = sizeof(poly2) / sizeof(poly2[0]);
-
     // 결과 배열의 크기는 두 다항식의 최대 지수 중 더 큰 값
-    int resultSize = (maxExp1 > maxExp2) ? maxExp1 : maxExp2;
-    int *result = (int *)calloc(resultSize, sizeof(int)); // 0으로 초기화된 배열
+    Pol *result = (Pol *)malloc(sizeof(Pol));
+    int resultSize = (poly1->size > poly2->size) ? poly1->size : poly2->size;
+    result->size = resultSize;
+    result->a = (int *)calloc(resultSize, sizeof(int));
 
     // 각 다항식의 계수를 결과 배열에 더함
-    for (int i = 0; i < maxExp1; i++)
+    for (int i = 0; i < poly1->size; i++)
     {
-        result[i] += poly1[i];
+        if (poly1->a[i] != 0)
+            result->a[i] += poly1->a[i];
     }
-    for (int i = 0; i < maxExp2; i++)
+    for (int i = 0; i < poly2->size; i++)
     {
-        result[i] += (-1 * poly2[i]);
+        if (poly2->a[i] != 0)
+            result->a[i] -= poly2->a[i];
     }
 
     return result;

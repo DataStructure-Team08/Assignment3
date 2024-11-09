@@ -88,7 +88,11 @@ void printArrayPolynomial(Pol *p)
     for (; i > 0; i--)
     {
         if (p->a[i] != 0)
-            printf("%dx^%d + ", p->a[i], i);
+        {
+            if (i != p->size - 1 && p->a[i] > 0)
+                printf("+");
+            printf("%dx^%d", p->a[i], i);
+        }
     }
     printf("%dx^%d", p->a[i], i);
     printf("\n");
