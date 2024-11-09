@@ -25,11 +25,11 @@ int main()
 
     printf("First linked-list version polynomial: ");
     Node *link1 = inputLinkedPolynomial();
-    printArrayPolynomial(link1);
+    printLinkedPolynomial(link1);
 
     printf("Second linked-list version polynomial: ");
     Node *link2 = inputLinkedPolynomial();
-    printArrayPolynomial(link2);
+    printLinkedPolynomial(link2);
 
     Node *link_add = addLinkedPolynomials(link1, link2);
     Node *link_sub = subLinkedPolynomials(link1, link2);
