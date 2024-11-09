@@ -105,8 +105,3 @@ Node *freeNode(Node *head)
         free(temp);
     }
 }
-//
-void freeArray(int *arr)
-{
-    free(arr);
-}
