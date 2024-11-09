@@ -30,9 +30,11 @@ int main() {
     printLinkedPolynomial(result);
     printf("\n");
 
-    // 메모리 해제
-    // TODO: 각 링크드 리스트의 노드를 해제하는 코드를 추가하세요.
-    
+   // delete polynomials
+    free(arr1);
+    free(arr2);
+    free(link_add);
+    free(link_sub);
 
     return 0;
 }
