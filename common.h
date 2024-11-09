@@ -6,11 +6,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// 다항식의 항을 나타내는 노드 구조체
+// Node structure representing a term in a polynomial
 typedef struct Node {
-    int coefficient; // 계수
-    int exponent;    // 차수
-    struct Node* next; // 다음 노드의 포인터
+    int coefficient; // Coefficient
+    int exponent;    // Exponent
+    struct Node* next; // Pointer to the next node
 } Node;
 
 Node* createNode(int coeff, int exp);
