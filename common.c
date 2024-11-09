@@ -42,7 +42,7 @@ Node *inputLinkedPolynomial()
 // input array-version polynomial
 Pol *inputArrayPolynomial()
 {
-    Pol *result;
+    Pol *result = (Pol *)malloc(sizeof(Pol));
     int *arrayPol = NULL;
     int cnt = 0;
     int coeff, exp;
@@ -56,7 +56,7 @@ Pol *inputArrayPolynomial()
         if (cnt == 0)
         {
             arrayPol = (int *)calloc(exp + 1, sizeof(int));
-            result->size = exp;
+            result->size = exp + 1;
         }
         arrayPol[exp] = coeff;
         cnt++;
@@ -82,15 +82,15 @@ void printLinkedPolynomial(Node *poly)
 }
 
 // oprint array-version polynomial
-void printArrayPolynomial(int *a)
+void printArrayPolynomial(Pol *p)
 {
-    int i = 0;
-    while (!a)
+    int i = p->size;
+    for (; i > 0; i--)
     {
-        if (a[i] != 0)
-            printf("%dx^%d + ", a[i], i);
-        i++;
+        if (p->a[i] != 0)
+            printf("%dx^%d + ", p->a[i], i);
     }
+    printf("%dx^%d", p->a[i], i);
     printf("\n");
 }
 
