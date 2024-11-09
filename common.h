@@ -6,14 +6,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// ���׽��� ���� ��Ÿ���� ��� ����ü
+// Node structure representing a term in a polynomial
 typedef struct Node
 {
-    int coefficient;   // ���
-    int exponent;      // ����
-    struct Node *next; // ���� ����� ������
+    int coefficient;   // Coefficient
+    int exponent;      // Exponent
+    struct Node *next; // Pointer to the next node
 } Node;
 
+// Structure for array-based polynomial representation
 typedef struct Pol
 {
     int size;
