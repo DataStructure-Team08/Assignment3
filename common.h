@@ -6,12 +6,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// ´ÙÇ×½ÄÀÇ Ç×À» ³ªÅ¸³»´Â ³ëµå ±¸Á¶Ã¼
+// ï¿½ï¿½ï¿½×½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼
 typedef struct Node
 {
-    int coefficient;   // °è¼ö
-    int exponent;      // Â÷¼ö
-    struct Node *next; // ´ÙÀ½ ³ëµåÀÇ Æ÷ÀÎÅÍ
+    int coefficient;   // ï¿½ï¿½ï¿½
+    int exponent;      // ï¿½ï¿½ï¿½ï¿½
+    struct Node *next; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 } Node;
 
 typedef struct Pol
