@@ -36,7 +36,7 @@ int main() {
     free(arr1);
     free(arr2);
     free(arr_add);
-    free(add_sub);
+    free(arr_sub);
     freeNode(link1);
     freeNode(link2);
     freeNode(link_add);
