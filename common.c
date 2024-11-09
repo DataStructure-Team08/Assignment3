@@ -96,7 +96,10 @@ void printArrayPolynomial(Pol *p)
     }
     if (p->a[i] != 0)
     {
-        printf("%dx^%d", p->a[i], i);
+        if (p->a[i] > 0)
+            printf("+%dx^%d", p->a[i], i);
+        else
+            printf("%dx^%d", p->a[i], i);
     }
     printf("\n");
 }
