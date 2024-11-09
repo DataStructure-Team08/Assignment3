@@ -19,6 +19,5 @@ Node* inputLinkedPolynomial();
 int* inputArrayPolynomial();
 void printPolynomial(Node* poly);
 void print_array(int* a, int n);
-void freeArray(int* arr);
 
 #endif 
