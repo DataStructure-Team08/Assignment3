@@ -122,7 +122,7 @@ int* addArrayPolynomials(int* poly1, int* poly2) {
     return result;
 }
 
-// add array-version polynomials
+// subtract array-version polynomials
 int* subArrayPolynomials(int* poly1, int* poly2) {
     int maxExp1 = sizeof(poly1) / sizeof(poly1[0]);
     int maxExp2 = sizeof(poly2) / sizeof(poly2[0]);
