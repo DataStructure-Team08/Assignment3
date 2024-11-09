@@ -1,6 +1,6 @@
 #include "cal.h"
 
-// 다항식 가감 연산 함수
+// add linkedlist-version polynomials
 Node* addLinkedPolynomials(Node* poly1, Node* poly2) {
     Node* result = NULL;
     Node* tail = NULL;
@@ -51,7 +51,7 @@ Node* addLinkedPolynomials(Node* poly1, Node* poly2) {
     return result;
 }
 
-// 다항식 가감 연산 함수
+// subtract linkedlist-version polynomials
 Node* subLinkedPolynomials(Node* poly1, Node* poly2) {
     Node* result = NULL;
     Node* tail = NULL;
@@ -102,16 +102,16 @@ Node* subLinkedPolynomials(Node* poly1, Node* poly2) {
     return result;
 }
 
-// 두 다항식의 덧셈 함수
+// add array-version polynomials
 int* addArrayPolynomials(int* poly1, int* poly2) {
     int maxExp1 = sizeof(poly1) / sizeof(poly1[0]);
     int maxExp2 = sizeof(poly2) / sizeof(poly2[0]);
 
-    // 결과 배열의 크기는 두 다항식의 최대 지수 중 더 큰 값
+    // result array is the array that has larger exponents
     int resultSize = (maxExp1 > maxExp2) ? maxExp1 : maxExp2;
-    int* result = (int*)calloc(resultSize, sizeof(int));  // 0으로 초기화된 배열
+    int* result = (int*)calloc(resultSize, sizeof(int));  // intialize result array as 0
 
-    // 각 다항식의 계수를 결과 배열에 더함
+    // add the coefficients of each polynomial to the result array
     for (int i = 0; i < maxExp1; i++) {
         result[i] += poly1[i];
     }
@@ -121,16 +121,17 @@ int* addArrayPolynomials(int* poly1, int* poly2) {
 
     return result;
 }
-// 두 다항식의 덧셈 함수
+
+// add array-version polynomials
 int* subArrayPolynomials(int* poly1, int* poly2) {
     int maxExp1 = sizeof(poly1) / sizeof(poly1[0]);
     int maxExp2 = sizeof(poly2) / sizeof(poly2[0]);
 
-    // 결과 배열의 크기는 두 다항식의 최대 지수 중 더 큰 값
+    // result array is the array that has larger exponents
     int resultSize = (maxExp1 > maxExp2) ? maxExp1 : maxExp2;
-    int* result = (int*)calloc(resultSize, sizeof(int));  // 0으로 초기화된 배열
+    int* result = (int*)calloc(resultSize, sizeof(int));  // intialize result array as 0
 
-    // 각 다항식의 계수를 결과 배열에 더함
+    // add the coefficients of each polynomial to the result array
     for (int i = 0; i < maxExp1; i++) {
         result[i] += poly1[i];
     }
