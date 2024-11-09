@@ -27,6 +27,5 @@ Pol *inputArrayPolynomial();
 void printLinkedPolynomial(Node *poly);
 void printArrayPolynomial(Pol *p);
 Node *freeNode(Node *head);
-void freeArray(int *arr);
 
 #endif
