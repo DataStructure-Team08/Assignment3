@@ -35,8 +35,12 @@ int main() {
    // delete polynomials
     free(arr1);
     free(arr2);
-    free(link_add);
-    free(link_sub);
+    free(arr_add);
+    free(add_sub);
+    freeNode(link1);
+    freeNode(link2);
+    freeNode(link_add);
+    freeNode(link_sub);
 
     return 0;
 }
