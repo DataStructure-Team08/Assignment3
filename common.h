@@ -6,11 +6,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// ´ÙÇ×½ÄÀÇ Ç×À» ³ªÅ¸³»´Â ³ëµå ±¸Á¶Ã¼
+// ë‹¤í•­ì‹ì˜ í•­ì„ ë‚˜íƒ€ë‚´ëŠ” ë…¸ë“œ êµ¬ì¡°ì²´
 typedef struct Node {
-    int coefficient; // °è¼ö
-    int exponent;    // Â÷¼ö
-    struct Node* next; // ´ÙÀ½ ³ëµåÀÇ Æ÷ÀÎÅÍ
+    int coefficient; // ê³„ìˆ˜
+    int exponent;    // ì°¨ìˆ˜
+    struct Node* next; // ë‹¤ìŒ ë…¸ë“œì˜ í¬ì¸í„°
 } Node;
 
 Node* createNode(int coeff, int exp);
@@ -19,5 +19,6 @@ int* inputArrayPolynomial();
 void printPolynomial(Node* poly);
 void print_array(int* a, int n);
 void freeArray(int* arr);
+Node* freeNode(Node* head);
 
 #endif 
