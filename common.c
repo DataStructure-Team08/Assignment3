@@ -81,7 +81,7 @@ void printLinkedPolynomial(Node *poly)
     printf("\n");
 }
 
-// oprint array-version polynomial
+// print array-version polynomial
 void printArrayPolynomial(int *a)
 {
     int i = 0;
