@@ -9,6 +9,16 @@ Node* createNode(int coeff, int exp) {
     return newNode;
 }
 
+// empty polynomial
+Node* freeNode(Node* head) {
+    Node* temp;
+    while(head != NULL) {
+        temp = head;
+        head = head->next;
+        free(temp);
+    }
+}
+
 // input linkedlist-version polynomial
 Node* inputLinkedPolynomial() {
     Node* head = NULL;
