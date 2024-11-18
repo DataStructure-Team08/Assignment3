@@ -1,9 +1,10 @@
 #include "searching.h"
 
-int main() {
-    const char* expression = "3 / 4 + 5 * ( 2 - 8 )";
+int main()
+{
+    const char *expression = "13 / 4 + 5 * ( 2 - 8 )";
 
-    TreeNode* root = buildExpressionTree(expression);
+    TreeNode *root = buildExpressionTree(expression);
 
     printf("Inorder traversal: ");
     inOrder(root);

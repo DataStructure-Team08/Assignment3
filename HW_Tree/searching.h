@@ -1,10 +1,11 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
 typedef struct TreeNode {
-    char Element;
+    char* Element;
     struct TreeNode* Left;
     struct TreeNode* Right;
 } TreeNode;
