@@ -29,7 +29,7 @@ typedef struct Queue {
 void push(StackNode** stack, TreeNode* node);
 TreeNode* pop(StackNode** stack);
 int precedence(char* op);
-TreeNode* createNode(char* element);
+TreeNode* createNode(const char* element);
 TreeNode* buildExpressionTree(const char* expression);
 
 Queue* createQueue();
