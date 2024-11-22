@@ -6,9 +6,9 @@
 
 // huffman tree's node
 typedef struct HuffmanNode {
-    char Character;         // 문자
-    int Frequency;          // 빈도수
-    struct HuffmanNode* Left, * Right; // 왼쪽/오른쪽 자식 노드
+    char Character;         // character
+    int Frequency;          // frequency
+    struct HuffmanNode* Left, * Right; // left/right child node
 } HuffmanNode;
 
 // Definition of priority queue's node
