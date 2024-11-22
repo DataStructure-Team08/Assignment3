@@ -5,10 +5,9 @@ int main() {
     char expression[1000];
     printf("Enter an arithmetic expression: ");
     if (fgets(expression, sizeof(expression), stdin)) {
-        // 개행 문자 제거
         size_t len = strlen(expression);
         if (len > 0 && expression[len - 1] == '\n') {
-            expression[len - 1] = '\0'; // 개행 문자를 NULL로 치환
+            expression[len - 1] = '\0'; // replace endl to NULL
         }
 
         printf("You entered: %s\n", expression);
