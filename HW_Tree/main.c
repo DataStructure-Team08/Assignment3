@@ -33,7 +33,7 @@ int main() {
     char code[256];
     generateCodes(rootHuff, code, 0, codes);
 
-    printf("허프만 코드:\n");
+    printf("Huffman codes:\n");
     for (int i = 0; i < 256; i++) {
         if (codes[i][0] != '\0') {
             printf("%c: %s\n", i, codes[i]);
@@ -42,12 +42,12 @@ int main() {
     // 부호화
     char encoded[10000];
     encode(input, codes, encoded);
-    printf("\n부호화된 문자열: %s\n", encoded);
+    printf("\nEncoded String: %s\n", encoded);
 
     // 복호화
     char decoded[1000];
     decode(encoded, rootHuff, decoded);
-    printf("\n복호화된 문자열: %s\n", decoded);
+    printf("\nDecoded String: %s\n", decoded);
 
     return 0;
 }
