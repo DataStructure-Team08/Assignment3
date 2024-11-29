@@ -15,14 +15,12 @@ int main() {
     int maxEdges = numNodes * (numNodes - 1) / 2;
     int numEdges = (density * maxEdges) / 100;
 
-    // 원래 그래프 생성
     int** graph = createAdjacencyMatrix(numNodes);
     addRandomEdges(graph, numNodes, numEdges);
 
     printf("Generated Adjacency Matrix:\n");
     printAdjacencyMatrix(graph, numNodes);
 
-    // BFS와 DFS 실행
     printf("\nExecuting BFS from node 0:\n");
     bfs(graph, numNodes, 0);
 
@@ -31,26 +29,33 @@ int main() {
     dfs(graph, numNodes, 0, visited);
     free(visited);
 
-    // 분리된 그래프를 복사하여 별도로 작업
-    int** separatedGraph = copyAdjacencyMatrix(graph, numNodes);
-    separateGraph(separatedGraph, numNodes);
+    // Create copies of the original graph for Prim's and Kruskal's algorithm
+    int** primGraph = createAdjacencyMatrix(numNodes);
+    int** kruskalGraph = createAdjacencyMatrix(numNodes);
+    copyGraph(graph, primGraph, numNodes);
+    copyGraph(graph, kruskalGraph, numNodes);
 
-    printf("\nGenerated Adjacency Matrix (After Separation):\n");
-    printAdjacencyMatrix(separatedGraph, numNodes);
-
-    printf("\nFinding Connected Components:\n");
-    findConnectedComponents(separatedGraph, numNodes);
-
-    // Prim과 Kruskal은 원래 그래프에 대해 실행
+    // Execute Prim's MST on the copied graph and check if it forms a Spanning Tree
     printf("\n\nExecuting Prim's MST:\n");
-    primMST(graph, numNodes);
+    primMST(primGraph, numNodes);  // existing primMST function (2 arguments)
+    if (isSpanningTree(primGraph, numNodes)) {
+        printf("Prim's MST is a valid Spanning Tree.\n");
+    } else {
+        printf("Prim's MST is NOT a valid Spanning Tree.\n");
+    }
 
+    // Execute Kruskal's MST on the copied graph and check if it forms a Spanning Tree
     printf("\nExecuting Kruskal's MST:\n");
-    kruskalMST(graph, numNodes);
+    kruskalMST(kruskalGraph, numNodes);  // existing kruskalMST function (2 arguments)
+    if (isSpanningTree(kruskalGraph, numNodes)) {
+        printf("Kruskal's MST is a valid Spanning Tree.\n");
+    } else {
+        printf("Kruskal's MST is NOT a valid Spanning Tree.\n");
+    }
 
-    // 메모리 해제
     freeAdjacencyMatrix(graph, numNodes);
-    freeAdjacencyMatrix(separatedGraph, numNodes);
+    freeAdjacencyMatrix(primGraph, numNodes);
+    freeAdjacencyMatrix(kruskalGraph, numNodes);
 
     return 0;
 }
