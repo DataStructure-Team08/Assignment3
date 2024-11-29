@@ -42,20 +42,26 @@ void dfs(int** graph, int numNodes, int start, bool* visited) {
 }
 
 // 연결 성분 탐색
-void findConnectedComponents(int** graph, int numNodes) {
+int* findConnectedComponents(int** graph, int numNodes) {
     bool* visited = (bool*)calloc(numNodes, sizeof(bool));
+    int* components = (int*)calloc(numNodes, sizeof(int));  // 각 노드가 속한 성분을 기록
     int componentCount = 0;
 
-    printf("Connected Components:\n");
+    // DFS로 연결된 성분을 찾음
     for (int i = 0; i < numNodes; i++) {
         if (!visited[i]) {
-            printf("Component %d: ", ++componentCount);
-            dfs(graph, numNodes, i, visited);
-            printf("\n");
+            componentCount++;
+            dfs(graph, numNodes, i, visited);  // 기존 dfs 함수 이용
+            for (int j = 0; j < numNodes; j++) {
+                if (visited[j]) {
+                    components[j] = componentCount;  // 방문한 노드에 성분 번호 기록
+                }
+            }
         }
     }
 
     free(visited);
+    return components;
 }
 
 // DFS 기반 사이클 판별
