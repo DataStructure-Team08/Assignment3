@@ -1,15 +1,11 @@
 #ifndef MINSPANTREE
 #define MINSPANTREE
 
-typedef struct {
-    int u, v, weight;
-} Edge;
-
-// Prim's MST 함수 선언
+// Function declarations for Prim's and Kruskal's algorithms
 void primMST(int** graph, int numNodes);
-
-// Kruskal's MST 함수 선언
 void kruskalMST(int** graph, int numNodes);
 
-#endif // MINSPANTREE
+// Function to check if a graph is a Spanning Tree
+bool isSpanningTree(int** graph, int numNodes);
 
+#endif // MINSPANTREE_H
