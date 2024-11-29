@@ -113,3 +113,32 @@ void kruskalMST(int** graph, int numNodes) {
     freeAdjacencyMatrix(mstGraph, numNodes); // MST 그래프 메모리 해제
     free(edges);
 }
+
+// spanning tree인지 검사하는 함수
+bool isSpanningTree(int** graph, int numNodes) {
+    // 연결 성분 확인
+    int* components = findConnectedComponents(graph, numNodes);
+    bool isConnected = true;
+    int componentCount = 0;
+    for (int i = 0; i < numNodes; i++) {
+        if (components[i] > componentCount) {
+            componentCount = components[i];
+        }
+    }
+
+    free(components);
+
+    if (componentCount > 1) {
+        // 연결되지 않은 노드가 있다는 의미로 Spanning Tree 아님
+        return false;
+    }
+
+    // 사이클 검사
+    if (isCyclicDFS(graph, numNodes)) {
+        // 사이클이 존재하면 Spanning Tree 아님
+        return false;
+    }
+
+    // 두 조건을 모두 만족하면 Spanning Tree
+    return true;
+}
