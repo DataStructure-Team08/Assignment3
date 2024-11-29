@@ -3,24 +3,24 @@
 #include <stdlib.h>
 #include <time.h>
 
-// 동적 메모리를 사용한 인접 행렬 생성
 int** createAdjacencyMatrix(int numNodes) {
-    int** graph = (int**)malloc(numNodes * sizeof(int*));
+    int** matrix = (int**)malloc(numNodes * sizeof(int*));
     for (int i = 0; i < numNodes; i++) {
-        graph[i] = (int*)calloc(numNodes, sizeof(int)); // 0으로 초기화
+        matrix[i] = (int*)calloc(numNodes, sizeof(int));
     }
-    return graph;
+    return matrix;
 }
 
-// 그래프 메모리 해제
-void freeAdjacencyMatrix(int** graph, int numNodes) {
+int** copyAdjacencyMatrix(int** graph, int numNodes) {
+    int** copy = createAdjacencyMatrix(numNodes);
     for (int i = 0; i < numNodes; i++) {
-        free(graph[i]);
+        for (int j = 0; j < numNodes; j++) {
+            copy[i][j] = graph[i][j];
+        }
     }
-    free(graph);
+    return copy;
 }
 
-// 랜덤 간선 추가
 void addRandomEdges(int** graph, int numNodes, int numEdges) {
     srand(time(NULL));
     int edgeCount = 0;
@@ -29,21 +29,38 @@ void addRandomEdges(int** graph, int numNodes, int numEdges) {
         int u = rand() % numNodes;
         int v = rand() % numNodes;
 
-        if (u != v && graph[u][v] == 0) { // 중복 간선 및 자기 자신 연결 방지
-            int weight = rand() % 100 + 1; // 가중치: 1 ~ 100
+        if (u != v && graph[u][v] == 0) { // Avoid self-loops and duplicate edges
+            int weight = rand() % 100 + 1; // Weights between 1 and 100
             graph[u][v] = weight;
-            graph[v][u] = weight; // 무방향 그래프
+            graph[v][u] = weight; // Undirected graph
             edgeCount++;
         }
     }
 }
 
-// 그래프 출력
 void printAdjacencyMatrix(int** graph, int numNodes) {
     for (int i = 0; i < numNodes; i++) {
         for (int j = 0; j < numNodes; j++) {
             printf("%3d ", graph[i][j]);
         }
         printf("\n");
+    }
+}
+
+void freeAdjacencyMatrix(int** graph, int numNodes) {
+    for (int i = 0; i < numNodes; i++) {
+        free(graph[i]);
+    }
+    free(graph);
+}
+
+void separateGraph(int** graph, int numNodes) {
+    int groupBoundary = numNodes / 2;
+
+    for (int i = 0; i < groupBoundary; i++) {
+        for (int j = groupBoundary; j < numNodes; j++) {
+            graph[i][j] = 0;
+            graph[j][i] = 0;
+        }
     }
 }
