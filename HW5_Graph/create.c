@@ -11,16 +11,6 @@ int** createAdjacencyMatrix(int numNodes) {
     return matrix;
 }
 
-int** copyAdjacencyMatrix(int** graph, int numNodes) {
-    int** copy = createAdjacencyMatrix(numNodes);
-    for (int i = 0; i < numNodes; i++) {
-        for (int j = 0; j < numNodes; j++) {
-            copy[i][j] = graph[i][j];
-        }
-    }
-    return copy;
-}
-
 void addRandomEdges(int** graph, int numNodes, int numEdges) {
     srand(time(NULL));
     int edgeCount = 0;
@@ -34,6 +24,14 @@ void addRandomEdges(int** graph, int numNodes, int numEdges) {
             graph[u][v] = weight;
             graph[v][u] = weight; // Undirected graph
             edgeCount++;
+        }
+    }
+}
+
+void copyGraph(int** source, int** destination, int numNodes) {
+    for (int i = 0; i < numNodes; i++) {
+        for (int j = 0; j < numNodes; j++) {
+            destination[i][j] = source[i][j];
         }
     }
 }
@@ -52,15 +50,4 @@ void freeAdjacencyMatrix(int** graph, int numNodes) {
         free(graph[i]);
     }
     free(graph);
-}
-
-void separateGraph(int** graph, int numNodes) {
-    int groupBoundary = numNodes / 2;
-
-    for (int i = 0; i < groupBoundary; i++) {
-        for (int j = groupBoundary; j < numNodes; j++) {
-            graph[i][j] = 0;
-            graph[j][i] = 0;
-        }
-    }
 }
