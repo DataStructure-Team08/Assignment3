@@ -5,11 +5,11 @@
 #include <stdlib.h>
 #include <limits.h>
 
-// Prim 알고리즘 구현
-void primMST(int** graph, int numNodes) {
+int** primMST(int** graph, int numNodes) {
     int* key = (int*)malloc(numNodes * sizeof(int));
     int* parent = (int*)malloc(numNodes * sizeof(int));
     bool* included = (bool*)calloc(numNodes, sizeof(bool));
+    int** mstGraph = createAdjacencyMatrix(numNodes); // MST를 저장할 그래프
 
     for (int i = 0; i < numNodes; i++) {
         key[i] = INT_MAX;
@@ -38,7 +38,9 @@ void primMST(int** graph, int numNodes) {
     printf("Prim's MST:\n");
     int totalWeight = 0;
     for (int i = 1; i < numNodes; i++) {
-        printf("Edge: %d - %d, Weight: %d\n", parent[i], i, graph[i][parent[i]]);
+        mstGraph[i][parent[i]] = graph[i][parent[i]];
+        mstGraph[parent[i]][i] = graph[parent[i]][i];
+        printf("Edge: %d - %d, Weight: %d\n", i, parent[i], graph[i][parent[i]]);
         totalWeight += graph[i][parent[i]];
     }
     printf("Total Weight: %d\n", totalWeight);
@@ -46,9 +48,10 @@ void primMST(int** graph, int numNodes) {
     free(key);
     free(parent);
     free(included);
+    return mstGraph; // 생성된 MST 반환
 }
 
-void kruskalMST(int** graph, int numNodes) {
+int** kruskalMST(int** graph, int numNodes) {
     typedef struct {
         int u, v, weight;
     } Edge;
@@ -60,10 +63,7 @@ void kruskalMST(int** graph, int numNodes) {
     for (int i = 0; i < numNodes; i++) {
         for (int j = i + 1; j < numNodes; j++) {
             if (graph[i][j]) {
-                edges[edgeCount].u = i;
-                edges[edgeCount].v = j;
-                edges[edgeCount].weight = graph[i][j];
-                edgeCount++;
+                edges[edgeCount++] = (Edge){i, j, graph[i][j]};
             }
         }
     }
@@ -79,29 +79,24 @@ void kruskalMST(int** graph, int numNodes) {
         }
     }
 
-    printf("Kruskal's MST:\n");
-
+    int** mstGraph = createAdjacencyMatrix(numNodes);
     int mstWeight = 0;
     int selectedEdges = 0;
-    int** mstGraph = createAdjacencyMatrix(numNodes); // MST를 별도로 관리
 
-    // MST 구성
+    printf("Kruskal's MST:\n");
+
     for (int i = 0; i < edgeCount && selectedEdges < numNodes - 1; i++) {
         int u = edges[i].u;
         int v = edges[i].v;
         int weight = edges[i].weight;
 
-        // MST 그래프에 간선을 임시 추가
         mstGraph[u][v] = weight;
         mstGraph[v][u] = weight;
 
-        // 사이클 탐지
         if (isCyclicDFS(mstGraph, numNodes)) {
-            // 사이클이 발생하면 간선을 제거
             mstGraph[u][v] = 0;
             mstGraph[v][u] = 0;
         } else {
-            // 사이클이 없으면 간선을 MST에 포함
             printf("Edge: %d - %d, Weight: %d\n", u, v, weight);
             mstWeight += weight;
             selectedEdges++;
@@ -110,35 +105,39 @@ void kruskalMST(int** graph, int numNodes) {
 
     printf("Total Weight: %d\n", mstWeight);
 
-    freeAdjacencyMatrix(mstGraph, numNodes); // MST 그래프 메모리 해제
     free(edges);
+    return mstGraph; // 생성된 MST 반환
 }
 
-// spanning tree인지 검사하는 함수
 bool isSpanningTree(int** graph, int numNodes) {
     // 연결 성분 확인
     int* components = findConnectedComponents(graph, numNodes);
-    bool isConnected = true;
-    int componentCount = 0;
-    for (int i = 0; i < numNodes; i++) {
-        if (components[i] > componentCount) {
-            componentCount = components[i];
+    int firstComponent = components[0];
+    for (int i = 1; i < numNodes; i++) {
+        if (components[i] != firstComponent) {
+            free(components);
+            return false; // 연결되지 않은 노드 존재
         }
     }
-
     free(components);
 
-    if (componentCount > 1) {
-        // 연결되지 않은 노드가 있다는 의미로 Spanning Tree 아님
-        return false;
+    // 간선 수 확인
+    int edgeCount = 0;
+    for (int i = 0; i < numNodes; i++) {
+        for (int j = i + 1; j < numNodes; j++) {
+            if (graph[i][j] > 0) {
+                edgeCount++;
+            }
+        }
+    }
+    if (edgeCount != numNodes - 1) {
+        return false; // 간선 수가 올바르지 않음
     }
 
     // 사이클 검사
     if (isCyclicDFS(graph, numNodes)) {
-        // 사이클이 존재하면 Spanning Tree 아님
-        return false;
+        return false; // 사이클 존재
     }
 
-    // 두 조건을 모두 만족하면 Spanning Tree
-    return true;
+    return true; // 연결되고 간선 수가 정확하며 사이클 없음
 }
