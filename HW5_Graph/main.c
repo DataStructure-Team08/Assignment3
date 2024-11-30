@@ -52,34 +52,26 @@ int main() {
         printf("\n");
     }
 
-    // Create copies of the original graph for Prim's and Kruskal's algorithm
-    int** primGraph = createAdjacencyMatrix(numNodes);
-    int** kruskalGraph = createAdjacencyMatrix(numNodes);
-    copyGraph(graph, primGraph, numNodes);
-    copyGraph(graph, kruskalGraph, numNodes);
-
-    // Execute Prim's MST on the copied graph and check if it forms a Spanning Tree
-    printf("\n\nExecuting Prim's MST:\n");
-    primMST(primGraph, numNodes);  // existing primMST function (2 arguments)
-    if (isSpanningTree(primGraph, numNodes)) {
+   printf("\n\nExecuting Prim's MST:\n");
+    int** primMSTGraph = primMST(graph, numNodes);
+    if (isSpanningTree(primMSTGraph, numNodes)) {
         printf("Prim's MST is a valid Spanning Tree.\n");
     } else {
         printf("Prim's MST is NOT a valid Spanning Tree.\n");
     }
+    freeAdjacencyMatrix(primMSTGraph, numNodes);
 
-    // Execute Kruskal's MST on the copied graph and check if it forms a Spanning Tree
     printf("\nExecuting Kruskal's MST:\n");
-    kruskalMST(kruskalGraph, numNodes);  // existing kruskalMST function (2 arguments)
-    if (isSpanningTree(kruskalGraph, numNodes)) {
+    int** kruskalMSTGraph = kruskalMST(graph, numNodes);
+    if (isSpanningTree(kruskalMSTGraph, numNodes)) {
         printf("Kruskal's MST is a valid Spanning Tree.\n");
     } else {
         printf("Kruskal's MST is NOT a valid Spanning Tree.\n");
     }
+    freeAdjacencyMatrix(kruskalMSTGraph, numNodes);
 
     free(components);
     freeAdjacencyMatrix(graph, numNodes);
-    freeAdjacencyMatrix(primGraph, numNodes);
-    freeAdjacencyMatrix(kruskalGraph, numNodes);
 
     return 0;
 }
