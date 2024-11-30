@@ -30,16 +30,19 @@ void bfs(int** graph, int numNodes, int start) {
 }
 
 // DFS 구현
-void dfs(int** graph, int numNodes, int start, bool* visited) {
+void dfs(int** graph, int numNodes, int start, bool* visited, bool print) {
     visited[start] = true;
-    printf("%d ", start);
+    if (print) {
+        printf("%d ", start);  // 필요할 때만 출력
+    }
 
     for (int i = 0; i < numNodes; i++) {
         if (graph[start][i] != 0 && !visited[i]) {
-            dfs(graph, numNodes, i, visited);
+            dfs(graph, numNodes, i, visited, print);
         }
     }
 }
+
 
 // 연결 성분 탐색
 int* findConnectedComponents(int** graph, int numNodes) {
@@ -47,11 +50,10 @@ int* findConnectedComponents(int** graph, int numNodes) {
     int* components = (int*)calloc(numNodes, sizeof(int));  // 각 노드가 속한 성분을 기록
     int componentCount = 0;
 
-    // DFS로 연결된 성분을 찾음
     for (int i = 0; i < numNodes; i++) {
         if (!visited[i]) {
             componentCount++;
-            dfs(graph, numNodes, i, visited);  // 기존 dfs 함수 이용
+            dfs(graph, numNodes, i, visited, false);  // 출력 없이 DFS 실행
             for (int j = 0; j < numNodes; j++) {
                 if (visited[j]) {
                     components[j] = componentCount;  // 방문한 노드에 성분 번호 기록
@@ -63,6 +65,7 @@ int* findConnectedComponents(int** graph, int numNodes) {
     free(visited);
     return components;
 }
+
 
 // DFS 기반 사이클 판별
 bool isCyclicDFS(int** graph, int numNodes) {
