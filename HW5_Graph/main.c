@@ -3,6 +3,7 @@
 #include "minspantree.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int main() {
     int numNodes, density;
@@ -12,6 +13,7 @@ int main() {
     printf("Enter edge density (0-100): ");
     scanf("%d", &density);
 
+    clock_t start = clock();
     int maxEdges = numNodes * (numNodes - 1) / 2;
     int numEdges = (density * maxEdges) / 100;
 
@@ -68,6 +70,10 @@ int main() {
     } else {
         printf("Kruskal's MST is NOT a valid Spanning Tree.\n");
     }
+
+    clock_t end = clock();
+    printf("Total time: %f\n", (double)(end - start) / CLOCKS_PER_SEC);
+
     freeAdjacencyMatrix(kruskalMSTGraph, numNodes);
 
     free(components);
